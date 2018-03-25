@@ -4,13 +4,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import com.example.sagunraj.swoosh.Utilities.EXTRA_LEAGUE
+import com.example.sagunraj.swoosh.Model.Player
 import com.example.sagunraj.swoosh.R
+import com.example.sagunraj.swoosh.Utilities.EXTRA_PLAYER
 import kotlinx.android.synthetic.main.activity_league.*
 
 class LeagueActivity : BaseActivity() {
 
-    var selectedLeague = ""
+    var player = Player("", "")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,9 +19,9 @@ class LeagueActivity : BaseActivity() {
     }
 
     fun leagueNextClicked(view: View){
-        if(selectedLeague != "") {
+        if(player.league != "") {
             val skillActivity = Intent(this, SkillActivity::class.java)
-            skillActivity.putExtra(EXTRA_LEAGUE, selectedLeague)
+            skillActivity.putExtra(EXTRA_PLAYER, player)
             startActivity(skillActivity)
         }
         else{
@@ -29,35 +30,35 @@ class LeagueActivity : BaseActivity() {
     }
 
     fun onMensClicked(view: View){
-        if(selectedLeague == "mens"){
-            selectedLeague = ""
+        if(player.league == "mens"){
+            player.league = ""
         }
         else {
             womensLeagueBtn.isChecked = false
             coedLeagueBtn.isChecked = false
-            selectedLeague = "mens"
+            player.league = "mens"
         }
     }
 
     fun onWomensClicked(view: View){
-        if(selectedLeague == "womens"){
-            selectedLeague = ""
+        if(player.league == "womens"){
+            player.league = ""
         }
         else {
             mensLeagueBtn.isChecked = false
             coedLeagueBtn.isChecked = false
-            selectedLeague = "womens"
+            player.league = "womens"
         }
     }
 
     fun onCoedClicked(view: View){
-        if(selectedLeague == "mens"){
-            selectedLeague = ""
+        if(player.league == "mens"){
+            player.league = ""
         }
         else {
             mensLeagueBtn.isChecked = false
             womensLeagueBtn.isChecked = false
-            selectedLeague = "co-ed"
+            player.league = "co-ed"
         }
     }
 
